@@ -30,6 +30,7 @@ function search(searchOption, searchValue){
         const drinksArr = result.drinks
         if (drinksArr !== null){
             drinksArr.forEach(createDrinkCard)
+            
         }else{
             throw('none')
         }
@@ -38,8 +39,6 @@ function search(searchOption, searchValue){
         resultsDiv.textContent = 'No drinks found. Try again!'
     })
     }
-
-
 
 function urlIdentifier(searchOption){
     if(searchOption.value === 'drinkName'){
@@ -60,11 +59,11 @@ function createDrinkCard(drink){
     drinkImg.width = 100
     drinkImg.height = 100
     drinkImg.src = drink.strDrinkThumb
+    drinkImg.alt = drink.strDrink
     drinkCard.append(drinkImg, drinkName)
     resultsDiv.append(drinkCard)
 
-    
-        // click drink img to see info
+    // click drink img to see info
     const category = drink.strCategory
     const glass = drink.strGlass 
     const drinkInstructions = drink.strInstructions
@@ -98,18 +97,22 @@ function createDrinkCard(drink){
 }
 
 function sortCards(sortEvent){
+
     const drinkCards = Array.from(document.querySelectorAll('.drink-card'))
     let sortedDrinkCards = []
-    if (sortEvent.target.value === 'alphabetical'){
+    if (sortEvent.target.value === 'a-to-z'){
         sortedDrinkCards = drinkCards.sort((a,b)=>{
             return a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
         })
-    }else{
+    }else if (sortEvent.target.value === 'z-to-a'){
         sortedDrinkCards = drinkCards.sort((a,b)=>{
             return a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
         }).reverse()
+    } else {
+        
     }
     for (card of sortedDrinkCards){
         resultsDiv.append(card)
     }
 }
+
