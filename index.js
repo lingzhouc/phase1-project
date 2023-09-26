@@ -2,13 +2,14 @@ const searchForm = document.querySelector('#search-form')
 const resultsDiv = document.querySelector('#drink-results')
 const drinkDiv = document.querySelector("#selected-drink")
 const sortField = document.querySelector('#sort-by')
-    
-sortField.selectedIndex = 0
+
 sortField.disabled = true
+sortField.selectedIndex = 0
 
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
     sortField.disabled = false
+    sortField.selectedIndex = 0
     resultsDiv.innerHTML = ''
     search(e.target['search-option'], e.target['search-bar'].value)
 })
