@@ -1,20 +1,24 @@
 const searchForm = document.querySelector('#search-form')
 const resultsDiv = document.querySelector('#drink-results')
+const sortField = document.querySelector('#sort-by')
+
+sortField.disabled = true
 
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
+    sortField.disabled = false
+    sortField.selectedIndex = 0
     resultsDiv.innerHTML = ''
-    console.log(e.target['search-option'].value)
-    console.log(e.target['search-bar'].value)
     search(e.target['search-option'], e.target['search-bar'].value)
 
     e.target.reset
 })
 
+sortField.addEventListener('change', sortCards)
+
 function search(searchOption, searchValue){
     const searchValueWithPlus = searchValue.replace(/ /g, "+")
     const searchUrl = urlIdentifier(searchOption) + searchValueWithPlus 
-    console.log(searchUrl)
     fetch(searchUrl)
     .then(r => {
         if(r.ok) {
@@ -23,16 +27,19 @@ function search(searchOption, searchValue){
             throw r.statusText
         }
     })
-    .then(result => { console.log(result)
+    .then(result => {
         const drinksArr = result.drinks
-        console.log(drinksArr)
         if (drinksArr !== null){
             drinksArr.forEach(createDrinkCard)
         }else{
-            resultsDiv.textContent = 'No drinks found. Try again!'
+            throw('none')
         }
-    }).catch(error => resultsDiv.textContent = 'No drinks found. Try again!')
+    }).catch(error => {
+        sortField.disabled = true
+        resultsDiv.textContent = 'No drinks found. Try again!'
+    })
     }
+
 
 
 function urlIdentifier(searchOption){
@@ -53,8 +60,26 @@ function createDrinkCard(drink){
     drinkImg.className = 'drink-image'
     drinkImg.width = 100
     drinkImg.height = 100
-    console.log(drinkImg)
     drinkImg.src = drink.strDrinkThumb
     drinkCard.append(drinkImg, drinkName)
     resultsDiv.append(drinkCard)
+}
+
+function sortCards(sortEvent){
+    const drinkCards = Array.from(document.querySelectorAll('.drink-card'))
+    let sortedDrinkCards = []
+    if (sortEvent.target.value === 'alphabetical'){
+        sortedDrinkCards = drinkCards.sort((a,b)=>{
+            const compareValue = a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
+            return compareValue
+        })
+    }else{
+        sortedDrinkCards = drinkCards.sort((a,b)=>{
+            const compareValue = a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
+            return compareValue
+        }).reverse()
+    }
+    for (card of sortedDrinkCards){
+        resultsDiv.append(card)
+    }
 }
