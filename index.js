@@ -1,21 +1,25 @@
 const searchForm = document.querySelector('#search-form')
 const resultsDiv = document.querySelector('#drink-results')
+const sortField = document.querySelector('#sort-by')
 const drinkDiv = document.querySelector("#selected-drink")
+
+sortField.disabled = true
 
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
+    sortField.disabled = false
+    sortField.selectedIndex = 0
     resultsDiv.innerHTML = ''
     console.log(e.target['search-option'].value)
     console.log(e.target['search-bar'].value)
     search(e.target['search-option'], e.target['search-bar'].value)
-
-    e.target.reset
 })
+
+sortField.addEventListener('change', sortCards)
 
 function search(searchOption, searchValue){
     const searchValueWithPlus = searchValue.replace(/ /g, "+")
     const searchUrl = urlIdentifier(searchOption) + searchValueWithPlus 
-    console.log(searchUrl)
     fetch(searchUrl)
     .then(r => {
         if(r.ok) {
@@ -24,16 +28,19 @@ function search(searchOption, searchValue){
             throw r.statusText
         }
     })
-    .then(result => { console.log(result)
+    .then(result => {
         const drinksArr = result.drinks
-        console.log(drinksArr)
         if (drinksArr !== null){
             drinksArr.forEach(createDrinkCard)
         }else{
-            resultsDiv.textContent = 'No drinks found. Try again!'
+            throw('none')
         }
-    }).catch(error => resultsDiv.textContent = 'No drinks found. Try again!')
+    }).catch(error => {
+        sortField.disabled = true
+        resultsDiv.textContent = 'No drinks found. Try again!'
+    })
     }
+
 
 
 function urlIdentifier(searchOption){
@@ -54,12 +61,12 @@ function createDrinkCard(drink){
     drinkImg.className = 'drink-image'
     drinkImg.width = 100
     drinkImg.height = 100
-    console.log(drinkImg)
     drinkImg.src = drink.strDrinkThumb
     drinkCard.append(drinkImg, drinkName)
     resultsDiv.append(drinkCard)
 
-    // click drink img to see info
+    
+        // click drink img to see info
     const category = drink.strCategory
     const glass = drink.strGlass 
     const drinkInstructions = drink.strInstructions
@@ -90,5 +97,21 @@ function createDrinkCard(drink){
         <p>${drinkInstructions}</p>
         `
     })
+}
 
+function sortCards(sortEvent){
+    const drinkCards = Array.from(document.querySelectorAll('.drink-card'))
+    let sortedDrinkCards = []
+    if (sortEvent.target.value === 'alphabetical'){
+        sortedDrinkCards = drinkCards.sort((a,b)=>{
+            return a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
+        })
+    }else{
+        sortedDrinkCards = drinkCards.sort((a,b)=>{
+            return a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
+        }).reverse()
+    }
+    for (card of sortedDrinkCards){
+        resultsDiv.append(card)
+    }
 }
