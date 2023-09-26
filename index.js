@@ -1,5 +1,6 @@
 const searchForm = document.querySelector('#search-form')
 const resultsDiv = document.querySelector('#drink-results')
+const drinkDiv = document.querySelector("#selected-drink")
 
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -57,4 +58,37 @@ function createDrinkCard(drink){
     drinkImg.src = drink.strDrinkThumb
     drinkCard.append(drinkImg, drinkName)
     resultsDiv.append(drinkCard)
+
+    // click drink img to see info
+    const category = drink.strCategory
+    const glass = drink.strGlass 
+    const drinkInstructions = drink.strInstructions
+
+    drinkImg.addEventListener("click", () => {
+        let alcoholic
+        if (drink.strAlcoholic === "Alcoholic") {
+            alcoholic = "Yes"
+        } else {
+            alcoholic = "No"
+        }
+       
+        let ingredient = "";
+        for (let i = 1; i < 16; i++) {
+        if (!drink["strIngredient"+ i]) break;
+        ingredient += `${drink["strMeasure"+ i]} ${drink["strIngredient"+ i]} <br>`;
+        }
+
+        drinkDiv.innerHTML = `
+        <h2>${drinkName.textContent}</h1>
+        <img src="${drinkImg.src}">
+        <p>Category: ${category}</p>
+        <p>Alcoholic: ${alcoholic}</p>
+        <p>Glass: ${glass}</p>
+        <h3>Ingredients</h3>
+        <p>${ingredient}</p>
+        <h3>Instructions</h3>
+        <p>${drinkInstructions}</p>
+        `
+    })
+
 }
