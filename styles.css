@@ -1,0 +1,42 @@
+/* all  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* banner */
+header {
+    height:150px;
+    background-image: url(img/banner.png);
+    background-position: center;
+}
+
+#title {
+    color:aliceblue;
+    text-align: center;
+}
+
+#title:hover, #title:focus {
+    text-shadow: 1px 0 0 #9c7f4c,0 1px 0 #9c7f4c,-1px 0 0 #9c7f4c,0 -1px 0 #9c7f4c;
+}
+
+/* form */
+
+input[name="search-bar"]{
+    width: 50%;
+}
+
+#search-form {
+    padding: 10px;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+div#drink-results {
+    width: 50%;
+}
+
+div#selected-drink {
+    width: 50%;
+}
