@@ -16,14 +16,24 @@ function search(searchOption, searchValue){
     const searchUrl = urlIdentifier(searchOption) + searchValueWithPlus 
     console.log(searchUrl)
     fetch(searchUrl)
-    .then(r => r.json())
+    .then(r => {
+        if(r.ok) {
+            return r.json()
+        } else {
+            throw r.statusText
+        }
+    })
     .then(result => { console.log(result)
         const drinksArr = result.drinks
         console.log(drinksArr)
-        drinksArr.forEach(createDrinkCard)
-    })
+        if (drinksArr !== null){
+            drinksArr.forEach(createDrinkCard)
+        }else{
+            resultsDiv.textContent = 'No drinks found. Try again!'
+        }
+    }).catch(error => resultsDiv.textContent = 'No drinks found. Try again!')
+    }
 
-}
 
 function urlIdentifier(searchOption){
     if(searchOption.value === 'drinkName'){
