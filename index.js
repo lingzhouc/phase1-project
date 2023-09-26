@@ -60,11 +60,27 @@ function createDrinkCard(drink){
     resultsDiv.append(drinkCard)
 
     // click drink img to see info
+    const category = drink.strCategory
+    const glass = drink.strGlass 
+    
+    const drinkInstructions = drink.strInstructions
+
     drinkImg.addEventListener("click", () => {
+        let alcoholic
+        if (drink.strAlcoholic === "Alcoholic") {
+            alcoholic = "Yes"
+        } else {
+            alcoholic = "No"
+        }
        
         drinkDiv.innerHTML = `
         <h2>${drinkName.textContent}</h1>
         <img src="${drinkImg.src}">
+        <p>Category: ${category}</p>
+        <p>Alcoholic: ${alcoholic}</p>
+        <p>Glass: ${glass}</p>
+        <h3>Instructions</h3>
+        <p>${drinkInstructions}</p>
         `
     })
 
