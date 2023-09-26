@@ -10,8 +10,6 @@ searchForm.addEventListener('submit', (e) => {
     sortField.disabled = false
     sortField.selectedIndex = 0
     resultsDiv.innerHTML = ''
-    console.log(e.target['search-option'].value)
-    console.log(e.target['search-bar'].value)
     search(e.target['search-option'], e.target['search-bar'].value)
 })
 
@@ -25,13 +23,11 @@ function search(searchOption, searchValue){
         if(r.ok) {
             return r.json()
         } else {
-            console.log(r.statusText)
             throw r.statusText
         }
     })
     .then(result => {
         const drinksArr = result.drinks
-        console.log(drinksArr)
         if (drinksArr !== null){
             drinksArr.forEach(createDrinkCard)
         }else{
@@ -79,7 +75,6 @@ function createDrinkCard(drink){
             .then(r=> r.json())
             .then(response =>{
             const newDrink = response.drinks[0]
-            console.log(newDrink)
             setDetails(newDrink)
             populateDetails(e)})
         })
