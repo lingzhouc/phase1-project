@@ -3,6 +3,7 @@ const resultsDiv = document.querySelector('#drink-results')
 
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
+    resultsDiv.innerHTML = ''
     console.log(e.target['search-option'].value)
     console.log(e.target['search-bar'].value)
     search(e.target['search-option'], e.target['search-bar'].value)
