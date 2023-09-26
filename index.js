@@ -10,8 +10,6 @@ searchForm.addEventListener('submit', (e) => {
     sortField.selectedIndex = 0
     resultsDiv.innerHTML = ''
     search(e.target['search-option'], e.target['search-bar'].value)
-
-    e.target.reset
 })
 
 sortField.addEventListener('change', sortCards)
@@ -70,13 +68,11 @@ function sortCards(sortEvent){
     let sortedDrinkCards = []
     if (sortEvent.target.value === 'alphabetical'){
         sortedDrinkCards = drinkCards.sort((a,b)=>{
-            const compareValue = a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
-            return compareValue
+            return a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
         })
     }else{
         sortedDrinkCards = drinkCards.sort((a,b)=>{
-            const compareValue = a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
-            return compareValue
+            return a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
         }).reverse()
     }
     for (card of sortedDrinkCards){
