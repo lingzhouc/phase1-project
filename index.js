@@ -74,13 +74,14 @@ function createDrinkCard(drink){
         // click drink img to see info
     if(!drink.strCategory){
         drinkId = drink.idDrink
-        fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='+drinkId)
-        .then(r=> r.json())
-        .then(response =>{
+        drinkImg.addEventListener("click", e=>{
+            fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='+drinkId)
+            .then(r=> r.json())
+            .then(response =>{
             const newDrink = response.drinks[0]
             console.log(newDrink)
             setDetails(newDrink)
-            drinkImg.addEventListener("click", populateDetails)
+            populateDetails(e)})
         })
     }else{
         setDetails(drink)
