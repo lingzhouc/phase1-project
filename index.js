@@ -62,7 +62,6 @@ function createDrinkCard(drink){
     // click drink img to see info
     const category = drink.strCategory
     const glass = drink.strGlass 
-    
     const drinkInstructions = drink.strInstructions
 
     drinkImg.addEventListener("click", () => {
