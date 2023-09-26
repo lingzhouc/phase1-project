@@ -1,4 +1,5 @@
 const searchForm = document.querySelector('#search-form')
+const resultsDiv = document.querySelector('#drink-results')
 
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -11,16 +12,38 @@ searchForm.addEventListener('submit', (e) => {
 
 function search(searchOption, searchValue){
     const searchValueWithPlus = searchValue.replace(/ /g, "+")
-    console.log(searchValueWithPlus)
     const searchUrl = urlIdentifier(searchOption) + searchValueWithPlus 
     console.log(searchUrl)
+    fetch(searchUrl)
+    .then(r => r.json())
+    .then(result => { console.log(result)
+        const drinksArr = result.drinks
+        console.log(drinksArr)
+        drinksArr.forEach(createDrinkCard)
+    })
 
 }
 
 function urlIdentifier(searchOption){
-    if(searchOption === 'drinkName'){
-        return 'www.thecocktaildb.com/api/json/v1/1/search.php?s='
+    if(searchOption.value === 'drinkName'){
+        return 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
     }else{
-        return 'www.thecocktaildb.com/api/json/v1/1/filter.php?i='
+        return 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i='
     }
+}
+
+function createDrinkCard(drink){
+    const drinkCard = document.createElement('div')
+    drinkCard.className = 'drink-card'
+    const drinkName = document.createElement('p')
+    drinkName.className = 'drink-name'
+    drinkName.textContent = drink.strDrink
+    const drinkImg = document.createElement('img')
+    drinkImg.className = 'drink-image'
+    drinkImg.width = 100
+    drinkImg.height = 100
+    console.log(drinkImg)
+    drinkImg.src = drink.strDrinkThumb
+    drinkCard.append(drinkImg, drinkName)
+    resultsDiv.append(drinkCard)
 }
