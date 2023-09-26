@@ -1,5 +1,6 @@
 const searchForm = document.querySelector('#search-form')
 const resultsDiv = document.querySelector('#drink-results')
+const drinkDiv = document.querySelector("#selected-drink")
 
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -57,4 +58,14 @@ function createDrinkCard(drink){
     drinkImg.src = drink.strDrinkThumb
     drinkCard.append(drinkImg, drinkName)
     resultsDiv.append(drinkCard)
+
+    // click drink img to see info
+    drinkImg.addEventListener("click", () => {
+       
+        drinkDiv.innerHTML = `
+        <h2>${drinkName.textContent}</h1>
+        <img src="${drinkImg.src}">
+        `
+    })
+
 }
