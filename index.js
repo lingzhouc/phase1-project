@@ -144,18 +144,19 @@ function sortCards(sortEvent){
 
     const drinkCards = Array.from(document.querySelectorAll('.drink-card'))
     let sortedDrinkCards = []
-    if (sortEvent.target.value === 'a-to-z'){
+    if (sortEvent.target.value == "a-to-z"){
         sortedDrinkCards = drinkCards.sort((a,b)=>{
             return a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
         })
-    }else if (sortEvent.target.value === 'z-to-a'){
+    }else if (sortEvent.target.value == "z-to-a"){
         sortedDrinkCards = drinkCards.sort((a,b)=>{
             return a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
         }).reverse()
-    } 
-
-    for (card of sortedDrinkCards){
+    } else {
+        sortedDrinkCards = drinkCards.sort((a,b)=>{
+            return a.classList[1][0].localeCompare(b.classList[1][0])
+        })}
+    for(card of sortedDrinkCards){
         resultsDiv.append(card)
     }
 }
-
