@@ -1,7 +1,7 @@
 const searchForm = document.querySelector('#search-form')
 const resultsDiv = document.querySelector('#drink-results')
-const sortField = document.querySelector('#sort-by')
 const drinkDiv = document.querySelector("#selected-drink")
+const sortField = document.querySelector('#sort-by')
 
 sortField.disabled = true
 sortField.selectedIndex = 0
@@ -31,6 +31,7 @@ function search(searchOption, searchValue){
         const drinksArr = result.drinks
         if (drinksArr !== null){
             drinksArr.forEach(createDrinkCard)
+            
         }else{
             throw('none')
         }
@@ -67,6 +68,7 @@ function createDrinkCard(drink){
     drinkImg.width = 100
     drinkImg.height = 100
     drinkImg.src = drink.strDrinkThumb
+    drinkImg.alt = drink.strDrink
     drinkCard.append(drinkImg, drinkName)
     resultsDiv.append(drinkCard)
 
@@ -132,9 +134,10 @@ function createDrinkCard(drink){
 }
 
 function sortCards(sortEvent){
+
     const drinkCards = Array.from(document.querySelectorAll('.drink-card'))
     let sortedDrinkCards = []
-    if (sortEvent.target.value === 'alphabetical'){
+    if (sortEvent.target.value === 'a-to-z'){
         sortedDrinkCards = drinkCards.sort((a,b)=>{
             return a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
         })
@@ -151,3 +154,4 @@ function sortCards(sortEvent){
         resultsDiv.append(card)
     }
 }
+
