@@ -3,13 +3,14 @@ const resultsDiv = document.querySelector('#drink-results')
 const drinkDiv = document.querySelector("#selected-drink")
 const sortField = document.querySelector('#sort-by')
 
+let favoritesArray = []
 let favoritesIds = []
 
 fetch('http://localhost:3000/favorites')
     .then(r => r.json())
     .then(response => {
-        let favoritesJson = Array.from(response)
-        favoritesJson.forEach(drink => {
+        favoritesArray = Array.from(response)
+        favoritesArray.forEach(drink => {
             favoritesIds.push(drink.id)
         })
 
