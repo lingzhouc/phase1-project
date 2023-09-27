@@ -82,7 +82,7 @@ function createDrinkCard(drink){
     let ingredient = ''
     let numIngredients = ''
 
-        // click drink img to see info
+    // click drink img to see info
     if(!drink.strCategory){
         drinkId = drink.idDrink
         drinkImg.addEventListener("click", e=>{
