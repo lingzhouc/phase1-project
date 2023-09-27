@@ -103,6 +103,7 @@ function createDrinkCard(drink){
         category = drink.strCategory
         glass = drink.strGlass 
         drinkInstructions = drink.strInstructions
+        ingredient = ""
         
         if (drink.strAlcoholic === "Alcoholic") {
             alcoholic = "Yes"
