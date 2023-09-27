@@ -5,23 +5,14 @@ const sortField = document.querySelector('#sort-by')
 
 sortField.disabled = true
 sortField.selectedIndex = 0
-const drinkDiv = document.querySelector("#selected-drink")
-const sortField = document.querySelector('#sort-by')
-
-sortField.disabled = true
-sortField.selectedIndex = 0
 
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
     sortField.disabled = false
     sortField.selectedIndex = 0
-    sortField.disabled = false
-    sortField.selectedIndex = 0
     resultsDiv.innerHTML = ''
     search(e.target['search-option'], e.target['search-bar'].value)
 })
-
-sortField.addEventListener('change', sortCards)
 
 sortField.addEventListener('change', sortCards)
 
@@ -37,20 +28,13 @@ function search(searchOption, searchValue){
         }
     })
     .then(result => {
-    .then(result => {
         const drinksArr = result.drinks
         if (drinksArr !== null){
             drinksArr.forEach(createDrinkCard)
             
         }else{
             throw('none')
-            throw('none')
         }
-    }).catch(error => {
-        sortField.disabled = true
-        resultsDiv.textContent = 'No drinks found. Try again!'
-    })
-}
     }).catch(error => {
         sortField.disabled = true
         resultsDiv.textContent = 'No drinks found. Try again!'
