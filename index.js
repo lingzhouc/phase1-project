@@ -11,6 +11,7 @@ searchForm.addEventListener('submit', (e) => {
     sortField.disabled = false
     sortField.selectedIndex = 0
     resultsDiv.innerHTML = ''
+    drinkDiv.innerHTML = ""
     search(e.target['search-option'], e.target['search-bar'].value)
 })
 
