@@ -55,13 +55,36 @@ input[type="submit"]{
     padding-left: 18px;
     padding-right: 18px;
     text-align: center;
+    flex-direction: al;
 }
 
-div#drink-results {
-    width: 50%;
+#drink-box {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
 }
 
-div#selected-drink {
-    width: 50%;
+#drink-results {
+    display: flex;
+    flex-flow: row wrap;
+    min-width: 45%;
+    max-width: 45%;
 }
 
+.drink-card { 
+    max-width: 175px;
+    border: double;
+    text-align: center;
+    padding: 10px;
+    margin: 15px;
+    border-radius: 10px;
+}
+
+.drink-image {
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}

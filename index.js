@@ -65,8 +65,6 @@ function createDrinkCard(drink){
     drinkName.textContent = drink.strDrink
     const drinkImg = document.createElement('img')
     drinkImg.className = 'drink-image'
-    drinkImg.width = 100
-    drinkImg.height = 100
     drinkImg.src = drink.strDrinkThumb
     drinkImg.alt = drink.strDrink
     drinkCard.append(drinkImg, drinkName)
