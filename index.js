@@ -94,7 +94,7 @@ fetch('http://localhost:3000/favorites')
 
         // click drink img to see info
         if(!drink.strCategory){
-            drinkId = drink.idDrink
+            drinkId = parseInt(drink.idDrink)
             drinkImg.addEventListener("click", e=>{
                 fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='+drinkId)
                 .then(r=> r.json())
