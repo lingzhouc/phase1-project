@@ -81,6 +81,7 @@ function createDrinkCard(drink){
     let alcoholic = ''
     let ingredient = ''
     let numIngredients = ''
+    let drinkId = ''
 
     // click drink img to see info
     if(!drink.strCategory){
