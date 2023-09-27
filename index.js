@@ -133,9 +133,9 @@ function createDrinkCard(drink){
             <p class="selected-details">Alcoholic: ${alcoholic}</p>
             <p class="selected-details">Glass: ${glass}</p>
             <h3 class="selected-titling">Ingredients: ${numIngredients}</h3>
-            <p>${ingredient}</p>
+            <p id="selected-ingredients">${ingredient}</p>
             <h3 class="selected-titling">Instructions</h3>
-            <p>${drinkInstructions}</p>
+            <p id="selected-instructions">${drinkInstructions}</p>
         `
     }
 }

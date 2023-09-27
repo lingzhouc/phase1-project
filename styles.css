@@ -57,7 +57,9 @@ input[type="submit"]{
 /* drink results */
 #drink-box {
     display: flex;
+    flex-direction: row;
     align-items: flex-start;
+    justify-content: space-between;
     padding: 20px;
 }
 
@@ -88,5 +90,21 @@ input[type="submit"]{
 
 /* selected drink */
 #selected-drink {
+    max-width: 50%;
+    min-width: 50%;
+    border: double;
+    margin: 15px;
+    padding: 10px;
+}
+#selected-image {   
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
     
+}
+
+#selected-name {
+    text-align: center;
 }
