@@ -11,6 +11,7 @@ searchForm.addEventListener('submit', (e) => {
     sortField.disabled = false
     sortField.selectedIndex = 0
     resultsDiv.innerHTML = ''
+    drinkDiv.innerHTML = ""
     search(e.target['search-option'], e.target['search-bar'].value)
 })
 
@@ -43,12 +44,16 @@ function search(searchOption, searchValue){
 
 function urlIdentifier(searchOption){
     if(searchOption.value === 'drinkName'){
-        byIngredientAmount = document.createElement('option')
-        byIngredientAmount.value = "byIngredient"
-        byIngredientAmount.id = 'sortByIngredients'
-        byIngredientAmount.textContent = "Least Ingredients"
-        document.querySelector('#sort-by').append(byIngredientAmount)
-        return 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
+        if(document.querySelector('#sortByIngredients') === null) {
+            byIngredientAmount = document.createElement('option')
+            byIngredientAmount.value = "byIngredient"
+            byIngredientAmount.id = 'sortByIngredients'
+            byIngredientAmount.textContent = "Least Ingredients"
+            document.querySelector('#sort-by').append(byIngredientAmount)
+            return 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
+        } else {
+            return 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
+        }
     }else{
         try{
             document.querySelector('#sortByIngredients').remove()
@@ -77,6 +82,7 @@ function createDrinkCard(drink){
     let drinkInstructions = ''
     let alcoholic = ''
     let ingredient = ''
+    let numIngredients = ''
 
         // click drink img to see info
     if(!drink.strCategory){
@@ -98,11 +104,13 @@ function createDrinkCard(drink){
         category = drink.strCategory
         glass = drink.strGlass 
         drinkInstructions = drink.strInstructions
+        
         if (drink.strAlcoholic === "Alcoholic") {
             alcoholic = "Yes"
         } else {
             alcoholic = "No"
         }
+
         for (let i = 1; i < 16; i++) {
             if (!drink["strIngredient"+ i]){
                 numIngredients = i-1
@@ -114,7 +122,8 @@ function createDrinkCard(drink){
             }else{
                 ingredient += `${drink["strIngredient"+ i]} <br>`;
             }
-    }}
+        }
+    }
 
     function populateDetails(event){
         drinkDiv.innerHTML = `
