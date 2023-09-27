@@ -1,5 +1,10 @@
 const searchForm = document.querySelector('#search-form')
 const resultsDiv = document.querySelector('#drink-results')
+const sortField = document.querySelector('#sort-by')
+const drinkDiv = document.querySelector("#selected-drink")
+
+sortField.disabled = true
+sortField.selectedIndex = 0
 const drinkDiv = document.querySelector("#selected-drink")
 const sortField = document.querySelector('#sort-by')
 
@@ -10,9 +15,13 @@ searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
     sortField.disabled = false
     sortField.selectedIndex = 0
+    sortField.disabled = false
+    sortField.selectedIndex = 0
     resultsDiv.innerHTML = ''
     search(e.target['search-option'], e.target['search-bar'].value)
 })
+
+sortField.addEventListener('change', sortCards)
 
 sortField.addEventListener('change', sortCards)
 
@@ -28,13 +37,20 @@ function search(searchOption, searchValue){
         }
     })
     .then(result => {
+    .then(result => {
         const drinksArr = result.drinks
         if (drinksArr !== null){
             drinksArr.forEach(createDrinkCard)
             
         }else{
             throw('none')
+            throw('none')
         }
+    }).catch(error => {
+        sortField.disabled = true
+        resultsDiv.textContent = 'No drinks found. Try again!'
+    })
+}
     }).catch(error => {
         sortField.disabled = true
         resultsDiv.textContent = 'No drinks found. Try again!'
@@ -43,8 +59,16 @@ function search(searchOption, searchValue){
 
 function urlIdentifier(searchOption){
     if(searchOption.value === 'drinkName'){
+        byIngredientAmount = document.createElement('option')
+        byIngredientAmount.value = "byIngredient"
+        byIngredientAmount.id = 'sortByIngredients'
+        byIngredientAmount.textContent = "Least Ingredients"
+        document.querySelector('#sort-by').append(byIngredientAmount)
         return 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
     }else{
+        try{
+            document.querySelector('#sortByIngredients').remove()
+        }catch{}
         return 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i='
     }
 }
