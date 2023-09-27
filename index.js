@@ -129,9 +129,11 @@ function createDrinkCard(drink){
         drinkDiv.innerHTML = `
             <h2 id="selected-name">${drinkName.textContent}</h1>
             <img id="selected-image" src="${drinkImg.src}">
-            <p class="selected-details">Category: ${category}</p>
-            <p class="selected-details">Alcoholic: ${alcoholic}</p>
-            <p class="selected-details">Glass: ${glass}</p>
+            <div id="selected-details">
+                <p>Category: ${category}</p>
+                <p>Alcoholic: ${alcoholic}</p>
+                <p>Glass: ${glass}</p>
+            </div>
             <h3 class="selected-titling">Ingredients: ${numIngredients}</h3>
             <p id="selected-ingredients">${ingredient}</p>
             <h3 class="selected-titling">Instructions</h3>

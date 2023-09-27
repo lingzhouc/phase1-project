@@ -95,17 +95,31 @@ input[type="submit"]{
     min-width: 50%;
     border: double;
     margin: 15px;
-    padding: 10px;
 }
+#selected-name {
+    border:double;
+    padding: 15px;
+    background-image: linear-gradient(#1c0028, white);
+}
+
 #selected-image {   
     height: 400px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 10px;
-    
+    margin: auto;
+    padding: 10px;
 }
 
 #selected-name {
     text-align: center;
 }
+
+#selected-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+    padding: 15px;
+    border:double;
+    background-image: linear-gradient(#1c0028, white);
+}
+
