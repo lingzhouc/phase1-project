@@ -127,14 +127,14 @@ function createDrinkCard(drink){
 
     function populateDetails(event){
         drinkDiv.innerHTML = `
-            <h2>${drinkName.textContent}</h1>
-            <img src="${drinkImg.src}">
-            <p>Category: ${category}</p>
-            <p>Alcoholic: ${alcoholic}</p>
-            <p>Glass: ${glass}</p>
-            <h3>Ingredients: ${numIngredients}</h3>
+            <h2 id="selected-name">${drinkName.textContent}</h1>
+            <img id="selected-image" src="${drinkImg.src}">
+            <p class="selected-details">Category: ${category}</p>
+            <p class="selected-details">Alcoholic: ${alcoholic}</p>
+            <p class="selected-details">Glass: ${glass}</p>
+            <h3 class="selected-titling">Ingredients: ${numIngredients}</h3>
             <p>${ingredient}</p>
-            <h3>Instructions</h3>
+            <h3 class="selected-titling">Instructions</h3>
             <p>${drinkInstructions}</p>
         `
     }
