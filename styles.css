@@ -23,7 +23,7 @@ header {
 
 /* form */
 #search-form {
-    padding: 10px;
+    padding: 15px;
     padding-left: 20%;
     padding-right: 20%;
     text-align: center;
@@ -51,7 +51,7 @@ input[type="submit"]{
 
 #sort-by {
     width: 140px;
-    margin: 20px;
+    margin: 10px;
 }
 
 /* drink results */
@@ -60,7 +60,8 @@ input[type="submit"]{
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #drink-results {
