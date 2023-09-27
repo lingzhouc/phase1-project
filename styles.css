@@ -23,17 +23,17 @@ header {
 
 /* form */
 #search-form {
-    padding: 10px;
+    padding: 15px;
     padding-left: 20%;
     padding-right: 20%;
     text-align: center;
 }
 
-select[name="search-option"] {
+select {
     padding-top: 3px;
     padding-bottom: 3px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 18px;
+    padding-right: 18px;
     text-align: center;
 }
 
@@ -50,17 +50,18 @@ input[type="submit"]{
 }
 
 #sort-by {
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 18px;
-    padding-right: 18px;
-    text-align: center;
+    width: 140px;
+    margin: 10px;
 }
 
+/* drink results */
 #drink-box {
     display: flex;
+    flex-direction: row;
     align-items: flex-start;
-    padding: 20px;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #drink-results {
@@ -87,3 +88,38 @@ input[type="submit"]{
     margin-right: auto;
     border-radius: 10px;
 }
+
+/* selected drink */
+#selected-drink {
+    max-width: 50%;
+    min-width: 50%;
+    border: double;
+    margin: 15px;
+}
+#selected-name {
+    border:double;
+    padding: 15px;
+    background-image: linear-gradient(#1c0028, white);
+}
+
+#selected-image {   
+    height: 400px;
+    display: block;
+    margin: auto;
+    padding: 10px;
+}
+
+#selected-name {
+    text-align: center;
+}
+
+#selected-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+    padding: 15px;
+    border:double;
+    background-image: linear-gradient(#1c0028, white);
+}
+

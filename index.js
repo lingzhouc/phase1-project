@@ -103,6 +103,7 @@ function createDrinkCard(drink){
         category = drink.strCategory
         glass = drink.strGlass 
         drinkInstructions = drink.strInstructions
+        ingredient = ""
         
         if (drink.strAlcoholic === "Alcoholic") {
             alcoholic = "Yes"
@@ -126,15 +127,17 @@ function createDrinkCard(drink){
 
     function populateDetails(event){
         drinkDiv.innerHTML = `
-            <h2>${drinkName.textContent}</h1>
-            <img src="${drinkImg.src}">
-            <p>Category: ${category}</p>
-            <p>Alcoholic: ${alcoholic}</p>
-            <p>Glass: ${glass}</p>
-            <h3>Ingredients: ${numIngredients}</h3>
-            <p>${ingredient}</p>
-            <h3>Instructions</h3>
-            <p>${drinkInstructions}</p>
+            <h2 id="selected-name">${drinkName.textContent}</h1>
+            <img id="selected-image" src="${drinkImg.src}">
+            <div id="selected-details">
+                <p>Category: ${category}</p>
+                <p>Alcoholic: ${alcoholic}</p>
+                <p>Glass: ${glass}</p>
+            </div>
+            <h3 class="selected-titling">Ingredients: ${numIngredients}</h3>
+            <p id="selected-ingredients">${ingredient}</p>
+            <h3 class="selected-titling">Instructions</h3>
+            <p id="selected-instructions">${drinkInstructions}</p>
         `
     }
 }
