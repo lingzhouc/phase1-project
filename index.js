@@ -104,9 +104,16 @@ function createDrinkCard(drink){
             alcoholic = "No"
         }
         for (let i = 1; i < 16; i++) {
-        if (!drink["strIngredient"+ i]) break;
-        ingredient += `${drink["strMeasure"+ i]} ${drink["strIngredient"+ i]} <br>`;
-        }
+            if (!drink["strIngredient"+ i]){
+                numIngredients = i-1
+                drinkCard.classList.add(numIngredients + '-ingredients')
+                break
+            };
+            if (drink["strMeasure"+ i] !== null){
+                ingredient += `${drink["strMeasure"+ i]} ${drink["strIngredient"+ i]} <br>`;
+            }else{
+                ingredient += `${drink["strIngredient"+ i]} <br>`;
+            }
     }
 
     function populateDetails(event){
@@ -116,7 +123,7 @@ function createDrinkCard(drink){
             <p>Category: ${category}</p>
             <p>Alcoholic: ${alcoholic}</p>
             <p>Glass: ${glass}</p>
-            <h3>Ingredients</h3>
+            <h3>Ingredients: ${numIngredients}</h3>
             <p>${ingredient}</p>
             <h3>Instructions</h3>
             <p>${drinkInstructions}</p>
@@ -137,7 +144,8 @@ function sortCards(sortEvent){
             return a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
         }).reverse()
     } else {
-        
+        sortedDrinkCards = drinkCards.sort((a,b)=>{
+            return a.classList[1][0].localeCompare(b.classList[1][0])
     }
     for (card of sortedDrinkCards){
         resultsDiv.append(card)
