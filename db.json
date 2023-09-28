@@ -1,3 +1,9 @@
 {
-  "favorites": []
+  "favorites": [
+    {
+      "id": 14842,
+      "strDrinkThumb": "https://www.thecocktaildb.com/images/media/drink/svuvrq1441208310.jpg",
+      "strDrink": "Midnight Mint"
+    }
+  ]
 }
