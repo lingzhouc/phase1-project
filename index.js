@@ -162,6 +162,16 @@ fetch('http://localhost:3000/favorites')
                 createAddFavoritesButton()
             }
 
+            randomBtn.addEventListener("click", renderRandom)
+            function renderRandom () {
+                fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php") 
+                    .then(r => r.json())
+                    .then(drink => {
+                        setDetails(drink)
+                        populateDetails(drink) 
+                    })
+            }
+
             function createAddFavoritesButton(){
                 addFavoritesButton = document.createElement('button')
                 if (favoritesIds.includes(drinkId)){
@@ -235,7 +245,7 @@ fetch('http://localhost:3000/favorites')
         }
 
         function setFavoritesButton(){
-            const favoritesButton = document.querySelector('button')
+            const favoritesButton = document.querySelector('#favorites')
             favoritesButton.textContent = 'Favorites'
             favoritesButton.addEventListener('click',e=>{
                 drinkDiv.setAttribute("style", "border: none")
@@ -257,6 +267,12 @@ fetch('http://localhost:3000/favorites')
             })
             searchForm.parentNode.append(favoritesButton)
         }
+
+        const randomBtn = document.querySelector("#random")
+    
+
+
+
     
     
     })
