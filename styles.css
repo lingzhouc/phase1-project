@@ -60,8 +60,8 @@ input[type="submit"]{
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 7%;
+    padding-right: 7%;
 }
 
 #drink-results {
@@ -87,19 +87,22 @@ input[type="submit"]{
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
+    mix-blend-mode: darken;
 }
 
 /* selected drink */
 #selected-drink {
-    max-width: 50%;
+    max-width: 780px;
     min-width: 50%;
     border: double;
-    margin: 15px;
+    margin-top: 15px;
+    margin-right: 15px;
 }
+
 #selected-name {
     border:double;
     padding: 15px;
-    background-image: linear-gradient(#1c0028, white);
+    background-image: linear-gradient(#1c0028, black);
 }
 
 #selected-image {   
@@ -111,15 +114,36 @@ input[type="submit"]{
 
 #selected-name {
     text-align: center;
+    color: #fff;
+    text-shadow:
+    1px 0px 0 #000,
+    0px 1px 0 #000,
+    -1px 0px 0 #000,
+    0px -1px 0 #000;
 }
 
 #selected-details {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-bottom: 20px;
     padding: 15px;
     border:double;
-    background-image: linear-gradient(#1c0028, white);
+    background-image: linear-gradient(#1c0028, black);
+    color: #fff;
+    text-shadow:
+    1px 0px 0 #000,
+    0px 1px 0 #000,
+    -1px 0px 0 #000,
+    0px -1px 0 #000;
 }
 
+.selected-titling {
+    margin: 15px;
+}
+
+#selected-ingredients, #selected-instructions {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
