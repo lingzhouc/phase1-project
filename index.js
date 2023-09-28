@@ -3,6 +3,7 @@ const resultsDiv = document.querySelector('#drink-results')
 const drinkDiv = document.querySelector("#selected-drink")
 const sortField = document.querySelector('#sort-by')
 const randomBtn = document.querySelector("#random")
+const showing = document.querySelector("#showing-results")
 
 let favoritesArray = []
 let favoritesIds = []
@@ -22,7 +23,7 @@ fetch('http://localhost:3000/favorites')
             e.preventDefault()
             sortField.disabled = false
             sortField.selectedIndex = 0
-            document.querySelector("#showing-results").textContent = `Showing results for: "${e.target["search-bar"].value}"`
+            showing.textContent = `Showing results for: "${e.target["search-bar"].value}"`
             resultsDiv.innerHTML = ""
             drinkDiv.innerHTML = ""
             search(e.target['search-option'], e.target['search-bar'].value)
@@ -31,7 +32,7 @@ fetch('http://localhost:3000/favorites')
 
         randomBtn.addEventListener("click", renderRandom)
         function renderRandom () {
-            document.querySelector("#showing-results").textContent = "Here's your surprise! A random drink!"
+            showing.textContent = "Here's your surprise! A random drink!"
             resultsDiv.innerHTML = ""
         
             fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php") 
@@ -265,11 +266,13 @@ fetch('http://localhost:3000/favorites')
             const favoritesButton = document.querySelector('#favorites')
             favoritesButton.textContent = 'Favorites'
             favoritesButton.addEventListener('click',e=>{
+                showing.textContent = "Favorites:"
                 drinkDiv.setAttribute("style", "border: none")
                 sortField.selectedIndex = 0
                 sortField.disabled = false
                 try{
                     document.querySelector('#sortByIngredients').remove()
+                    document.querySelector('#sortByIngredientsReverse').remove()
                 }catch{}
                 if (favoritesArray.length !== 0){
                     resultsDiv.innerHTML = ''
