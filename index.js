@@ -14,7 +14,7 @@ fetch('http://localhost:3000/favorites')
             favoritesIds.push(drink.id)
         })
 
-    const favoritesButton = document.createElement('button')
+    const favoritesButton = document.querySelector("button")
     favoritesButton.textContent = 'Favorites'
     favoritesButton.addEventListener('click',e=>{
         if (favoritesArray.length !== 0){
