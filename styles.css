@@ -117,6 +117,10 @@ input[type="submit"]{
     color:#000;
 }    
 
+.drink-card:active {
+    box-shadow: 15px 15px 10px black;
+}
+
 /* selected drink */
 #selected-drink {
     max-width: 780px;
