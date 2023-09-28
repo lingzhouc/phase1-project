@@ -91,11 +91,12 @@ input[type="submit"]{
 
 /* selected drink */
 #selected-drink {
-    max-width: 50%;
+    max-width: 780px;
     min-width: 50%;
     border: double;
-    margin: 15px;
+    margin-top: 15px;
 }
+
 #selected-name {
     border:double;
     padding: 15px;
