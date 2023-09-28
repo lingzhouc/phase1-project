@@ -73,11 +73,13 @@ input[type="submit"]{
 
 .drink-card { 
     max-width: 175px;
+    height: 224px;
     border: double;
     text-align: center;
     padding: 10px;
     margin: 15px;
     border-radius: 10px;
+    background: #1c0028;
 }
 
 .drink-image {
@@ -87,8 +89,25 @@ input[type="submit"]{
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
-    mix-blend-mode: darken;
 }
+
+.drink-name {
+    margin: auto;
+    padding: 15px 0;
+}
+
+.drink-name {
+   color: white;
+}
+
+.drink-card:hover, .drink-card:focus {
+    background: #fff;
+}
+
+.drink-card:hover > p, .drink-card:focus > p {
+    text-shadow: none;
+    color:#000;
+}    
 
 /* selected drink */
 #selected-drink {
@@ -114,12 +133,6 @@ input[type="submit"]{
 
 #selected-name {
     text-align: center;
-    color: #fff;
-    text-shadow:
-    1px 0px 0 #000,
-    0px 1px 0 #000,
-    -1px 0px 0 #000,
-    0px -1px 0 #000;
 }
 
 #selected-details {
@@ -129,12 +142,15 @@ input[type="submit"]{
     padding: 15px;
     border:double;
     background-image: linear-gradient(#1c0028, black);
+}
+
+#selected-details, #selected-name {
     color: #fff;
     text-shadow:
-    1px 0px 0 #000,
-    0px 1px 0 #000,
-    -1px 0px 0 #000,
-    0px -1px 0 #000;
+    2px 0px 0 #000,
+    0px 2px 0 #000,
+    -2px 0px 0 #000,
+    0px -2px 0 #000;
 }
 
 .selected-titling {
