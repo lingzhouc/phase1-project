@@ -2,6 +2,8 @@ const searchForm = document.querySelector('#search-form')
 const resultsDiv = document.querySelector('#drink-results')
 const drinkDiv = document.querySelector("#selected-drink")
 const sortField = document.querySelector('#sort-by')
+const randomBtn = document.querySelector("#random")
+const showing = document.querySelector("#showing-results")
 
 let favoritesArray = []
 let favoritesIds = []
@@ -21,11 +23,24 @@ fetch('http://localhost:3000/favorites')
             e.preventDefault()
             sortField.disabled = false
             sortField.selectedIndex = 0
-            resultsDiv.innerHTML = ''
+            showing.textContent = `Showing results for: "${e.target["search-bar"].value}"`
+            resultsDiv.innerHTML = ""
             drinkDiv.innerHTML = ""
             search(e.target['search-option'], e.target['search-bar'].value)
         })
         sortField.addEventListener('change', sortCards)
+
+        randomBtn.addEventListener("click", renderRandom)
+        function renderRandom () {
+            showing.textContent = "Here's your surprise! A random drink!"
+            resultsDiv.innerHTML = ""
+        
+            fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php") 
+                .then(r => r.json())
+                .then(drink => {
+                    createDrinkCard(drink.drinks[0])
+                })
+            }
 
         function search(searchOption, searchValue){
             drinkDiv.setAttribute("style", "border: none")
@@ -54,12 +69,19 @@ fetch('http://localhost:3000/favorites')
 
         function urlIdentifier(searchOption){
             if(searchOption.value === 'drinkName'){
-                if(document.querySelector('#sortByIngredients') === null) {
+                if(document.querySelector('#sortByIngredients') === null && document.querySelector('#sortByIngredientsReverse') === null) {
                     byIngredientAmount = document.createElement('option')
                     byIngredientAmount.value = "byIngredient"
                     byIngredientAmount.id = 'sortByIngredients'
                     byIngredientAmount.textContent = "Least Ingredients"
-                    document.querySelector('#sort-by').append(byIngredientAmount)
+
+                    byIngredientAmountReverse = document.createElement("option")
+                    byIngredientAmountReverse.value = "byIngredientReverse"
+                    byIngredientAmountReverse.id = "sortByIngredientsReverse"
+                    byIngredientAmountReverse.textContent = "Most Ingredients"
+
+                    document.querySelector('#sort-by').append(byIngredientAmount, byIngredientAmountReverse)
+                    
                     return 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
                 } else {
                     return 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
@@ -67,6 +89,7 @@ fetch('http://localhost:3000/favorites')
             }else{
                 try{
                     document.querySelector('#sortByIngredients').remove()
+                    document.querySelector('#sortByIngredientsReverse').remove()
                 }catch{}
                 return 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i='
             }
@@ -225,24 +248,31 @@ fetch('http://localhost:3000/favorites')
                 sortedDrinkCards = drinkCards.sort((a,b)=>{
                     return a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
                 }).reverse()
-            } else {
+            } else if (sortEvent.target.value == "byIngredient") {
                 sortedDrinkCards = drinkCards.sort((a,b)=>{
                     return a.classList[1][0].localeCompare(b.classList[1][0])
-                })}
+                })
+            } else if (sortEvent.target.value == "byIngredientReverse") {
+                sortedDrinkCards = drinkCards.sort((a,b)=>{
+                    return a.classList[1][0].localeCompare(b.classList[1][0])
+                }).reverse()     
+            }
             for(card of sortedDrinkCards){
                 resultsDiv.append(card)
             }
         }
 
         function setFavoritesButton(){
-            const favoritesButton = document.querySelector('button')
+            const favoritesButton = document.querySelector('#favorites')
             favoritesButton.textContent = 'Favorites'
             favoritesButton.addEventListener('click',e=>{
+                showing.textContent = "Favorites:"
                 drinkDiv.setAttribute("style", "border: none")
                 sortField.selectedIndex = 0
                 sortField.disabled = false
                 try{
                     document.querySelector('#sortByIngredients').remove()
+                    document.querySelector('#sortByIngredientsReverse').remove()
                 }catch{}
                 if (favoritesArray.length !== 0){
                     resultsDiv.innerHTML = ''
@@ -257,6 +287,12 @@ fetch('http://localhost:3000/favorites')
             })
             searchForm.parentNode.append(favoritesButton)
         }
+
+        
+    
+
+
+
     
     
     })
