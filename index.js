@@ -27,8 +27,10 @@ fetch('http://localhost:3000/favorites')
             resultsDiv.innerHTML = ""
             drinkDiv.innerHTML = ""
             search(e.target['search-option'], e.target['search-bar'].value)
-            e.target.reset()
+
+            e.target["search-bar"].value = "";
         })
+        
         sortField.addEventListener('change', sortCards)
 
         randomBtn.addEventListener("click", renderRandom)
