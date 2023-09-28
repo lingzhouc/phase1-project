@@ -27,8 +27,10 @@ fetch('http://localhost:3000/favorites')
             resultsDiv.innerHTML = ""
             drinkDiv.innerHTML = ""
             search(e.target['search-option'], e.target['search-bar'].value)
-            e.target.reset()
+
+            e.target["search-bar"].value = "";
         })
+
         sortField.addEventListener('change', sortCards)
 
         randomBtn.addEventListener("click", renderRandom)
@@ -87,11 +89,11 @@ fetch('http://localhost:3000/favorites')
                 } else {
                     return 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
                 }
-            }else{
-                try{
+            } else {
+                try {
                     document.querySelector('#sortByIngredients').remove()
                     document.querySelector('#sortByIngredientsReverse').remove()
-                }catch{}
+                } catch {}
                 return 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i='
             }
         }
@@ -245,7 +247,7 @@ fetch('http://localhost:3000/favorites')
                 sortedDrinkCards = drinkCards.sort((a,b)=>{
                     return a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
                 })
-            }else if (sortEvent.target.value == "z-to-a"){
+            } else if (sortEvent.target.value == "z-to-a"){
                 sortedDrinkCards = drinkCards.sort((a,b)=>{
                     return a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
                 }).reverse()
@@ -254,30 +256,32 @@ fetch('http://localhost:3000/favorites')
                     return a.classList[1][0].localeCompare(b.classList[1][0])
                 })
             } else if (sortEvent.target.value == "byIngredientReverse") {
-                sortedDrinkCards = drinkCards.sort((a,b)=>{
+                sortedDrinkCards = drinkCards.sort((a,b) => {
                     return a.classList[1][0].localeCompare(b.classList[1][0])
                 }).reverse()     
             }
-            for(card of sortedDrinkCards){
+            for (card of sortedDrinkCards) {
                 resultsDiv.append(card)
             }
         }
 
-        function setFavoritesButton(){
+        function setFavoritesButton() {
             const favoritesButton = document.querySelector('#favorites')
             favoritesButton.textContent = 'Favorites'
-            favoritesButton.addEventListener('click',e=>{
+            favoritesButton.addEventListener('click', e => {
 
-                showing.textContent = "Favorites:"
+                showing.textContent = `Favorites: ${favoritesArray.length}`
                 drinkDiv.setAttribute("style", "border: none")
                 drinkDiv.innerHTML = ""
 
                 sortField.selectedIndex = 0
                 sortField.disabled = false
-                try{
+                
+                try {
                     document.querySelector('#sortByIngredients').remove()
                     document.querySelector('#sortByIngredientsReverse').remove()
-                }catch{}
+                } catch {}
+                
                 if (favoritesArray.length !== 0){
                     resultsDiv.innerHTML = ''
                     drinkDiv.innerHTML = ""
@@ -285,18 +289,10 @@ fetch('http://localhost:3000/favorites')
                         drink.idDrink = drink.id
                         createDrinkCard(drink)
                     }) 
-                }else{
+                } else {
                     resultsDiv.textContent = 'No favorites set. Try searching!'
                 }
             })
             searchForm.parentNode.append(favoritesButton)
         }
-
-        
-    
-
-
-
-    
-    
     })

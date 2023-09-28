@@ -26,7 +26,7 @@ header {
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    padding: 20px;
+    padding: 20px 20px 0 20px;
 }
 
 #search-form {
@@ -50,30 +50,37 @@ input[type="submit"]{
     padding: 3px 2em;
 }
 
+/* sort bar */
+#sort {
+    display: flex;
+    flex-direction: row;
+}
+
 #sort-by {
     width: 200px;
-    margin: 10px;
-    margin-left: 20px;
+    margin: 10px 0 10px 20px;
 }
+
+#showing-results {
+    padding: 10px 2%;
+}
+
 
 /* drink results */
-#showing-results {
-    padding-left: 7%;
-}
-
 #drink-box {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 0 7%;
+    padding: 0 5%;
 }
 
 #drink-results {
     display: flex;
     flex-flow: row wrap;
-    min-width: 50%;
-    max-width: 50%;
+    width: 50%;
+    padding-top: 30px;
+    justify-content: center;
 }
 
 .drink-card { 
@@ -110,11 +117,15 @@ input[type="submit"]{
     color:#000;
 }    
 
+.drink-card:active {
+    box-shadow: 15px 15px 10px black;
+}
+
 /* selected drink */
 #selected-drink {
     max-width: 780px;
-    min-width: 50%;
-    margin: 15px 15px 0 0;
+    min-width: 45%;
+    margin-right: 40px;
 }
 
 #selected-name {
@@ -163,11 +174,10 @@ input[type="submit"]{
 }
 
 /* favorites */
-
 #favorites, #random {
-    padding: 3px 10px;
-    margin-right: 20px;
-    height: 26px;
+    padding: 3px 13px;
+    margin: 15px 15px 0 0;
+    height: 35px;
 }
 
 #favorites-button {

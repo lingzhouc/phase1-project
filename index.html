@@ -27,7 +27,7 @@
                     <option value = 'drinkName'>Drink Name</option>
                     <option value = 'ingredient'>Ingredient</option>
                 </select>
-                <input name="search-bar" type="text" required>
+                <input name="search-bar" type="text" placeholder="e.g. vodka" required>
                 <input type="submit" value="Search">
             </form>
 
@@ -41,14 +41,15 @@
                 <option value="a-to-z">A to Z</option>
                 <option value="z-to-a">Z to A</option>
             </select>
+
+            <h3 id="showing-results"></h3>
         </div>
         
         <!-- drinks -->
-        <h3 id="showing-results"></h3>
         <div id="drink-box">
             
             <div id="drink-results">
-                Welcome! Search for drinks by name or ingredient.
+                <p>Welcome! Search for drinks by name or ingredient.</p>
             </div>
             
             <div id="selected-drink"></div>
