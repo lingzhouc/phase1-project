@@ -2,6 +2,7 @@ const searchForm = document.querySelector('#search-form')
 const resultsDiv = document.querySelector('#drink-results')
 const drinkDiv = document.querySelector("#selected-drink")
 const sortField = document.querySelector('#sort-by')
+const randomBtn = document.querySelector("#random")
 
 let favoritesArray = []
 let favoritesIds = []
@@ -27,6 +28,18 @@ fetch('http://localhost:3000/favorites')
             search(e.target['search-option'], e.target['search-bar'].value)
         })
         sortField.addEventListener('change', sortCards)
+
+        randomBtn.addEventListener("click", renderRandom)
+        function renderRandom () {
+            document.querySelector("#showing-results").textContent = "Here's your surprise! A random drink!"
+            resultsDiv.innerHTML = ""
+        
+            fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php") 
+                .then(r => r.json())
+                .then(drink => {
+                    createDrinkCard(drink.drinks[0])
+                })
+            }
 
         function search(searchOption, searchValue){
             drinkDiv.setAttribute("style", "border: none")
@@ -171,16 +184,6 @@ fetch('http://localhost:3000/favorites')
                 createAddFavoritesButton()
             }
 
-            randomBtn.addEventListener("click", renderRandom)
-            function renderRandom () {
-                fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php") 
-                    .then(r => r.json())
-                    .then(drink => {
-                        setDetails(drink)
-                        populateDetails(drink) 
-                    })
-            }
-
             function createAddFavoritesButton(){
                 addFavoritesButton = document.createElement('button')
                 if (favoritesIds.includes(drinkId)){
@@ -282,7 +285,7 @@ fetch('http://localhost:3000/favorites')
             searchForm.parentNode.append(favoritesButton)
         }
 
-        const randomBtn = document.querySelector("#random")
+        
     
 
 
