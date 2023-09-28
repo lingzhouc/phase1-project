@@ -78,7 +78,8 @@ input[type="submit"]{
 #drink-results {
     display: flex;
     flex-flow: row wrap;
-    width: 50%;
+    max-width: 50%;
+    min-width: 50%;
     padding-top: 30px;
     justify-content: center;
 }
