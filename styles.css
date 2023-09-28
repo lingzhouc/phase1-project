@@ -29,19 +29,15 @@ header {
     padding: 20px;
 }
 
-
 #search-form {
-    padding: 15px, 20%, 15px, 20%;
-    min-width: 900px;
+    padding: 15px 0;
+    min-width: 500px;
     text-align: center;
-    margin-left: 15%;
+    margin-left: 23%;
 }
 
 select {
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 18px;
-    padding-right: 18px;
+    padding: 3px 18px;
     text-align: center;
 }
 
@@ -51,14 +47,11 @@ input[name="search-bar"]{
 }
 
 input[type="submit"]{
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 2em;
-    padding-right: 2em;
+    padding: 3px 2em;
 }
 
 #sort-by {
-    width: 140px;
+    width: 200px;
     margin: 10px;
     margin-left: 20px;
 }
@@ -73,15 +66,14 @@ input[type="submit"]{
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    padding-left: 7%;
-    padding-right: 7%;
+    padding: 0 7%;
 }
 
 #drink-results {
     display: flex;
     flex-flow: row wrap;
-    min-width: 45%;
-    max-width: 45%;
+    min-width: 50%;
+    max-width: 50%;
 }
 
 .drink-card { 
@@ -99,18 +91,14 @@ input[type="submit"]{
     width: 150px;
     height: 150px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     border-radius: 10px;
 }
 
 .drink-name {
     margin: auto;
     padding: 15px 0;
-}
-
-.drink-name {
-   color: white;
+    color: white;
 }
 
 .drink-card:hover, .drink-card:focus {
@@ -126,8 +114,7 @@ input[type="submit"]{
 #selected-drink {
     max-width: 780px;
     min-width: 50%;
-    margin-top: 15px;
-    margin-right: 15px;
+    margin: 15px 15px 0 0;
 }
 
 #selected-name {
@@ -168,34 +155,24 @@ input[type="submit"]{
 }
 
 .selected-titling {
-    margin-top: 25px;
-    margin-left: 40px;
+    margin: 25px 0 0 40px;
 }
 
 #selected-ingredients, #selected-instructions {
-    margin-top: 10px;
-    margin-left: 60px;
-    margin-right: 60px;
+    margin: 10px 60px 0 60px;
 }
 
 /* favorites */
 
-button {
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 18px;
-    padding-right: 18px;
+#favorites, #random {
+    padding: 3px 10px;
     margin-right: 20px;
+    height: 26px;
 }
 
 #favorites-button {
     display: block;
-    margin: auto;
-    margin-top: 70px;
-    margin-bottom: 55px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 23px;
-    padding-right: 23px;
+    margin: 70px auto 55px auto;
+    padding: 15px 23px;
     font-size: 105%;
 }
