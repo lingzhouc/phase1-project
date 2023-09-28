@@ -52,8 +52,7 @@ input[type="submit"]{
 
 #sort-by {
     width: 200px;
-    margin: 10px;
-    margin-left: 20px;
+    margin: 10px 0 10px 20px;
 }
 
 /* drink results */
@@ -114,7 +113,7 @@ input[type="submit"]{
 #selected-drink {
     max-width: 780px;
     min-width: 50%;
-    margin: 15px 15px 0 0;
+    margin-right: 15px;
 }
 
 #selected-name {
@@ -163,11 +162,10 @@ input[type="submit"]{
 }
 
 /* favorites */
-
 #favorites, #random {
-    padding: 3px 10px;
-    margin-right: 20px;
-    height: 26px;
+    padding: 3px 13px;
+    margin: 15px 15px 0 0;
+    height: 35px;
 }
 
 #favorites-button {
