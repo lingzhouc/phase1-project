@@ -64,6 +64,10 @@ input[type="submit"]{
 }
 
 /* drink results */
+#showing-results {
+    padding-left: 7%;
+}
+
 #drink-box {
     display: flex;
     flex-direction: row;

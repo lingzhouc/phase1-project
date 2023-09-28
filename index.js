@@ -21,7 +21,8 @@ fetch('http://localhost:3000/favorites')
             e.preventDefault()
             sortField.disabled = false
             sortField.selectedIndex = 0
-            resultsDiv.innerHTML = `<h3>Showing results for: "${e.target["search-bar"].value}"</h3></br>`
+            document.querySelector("#showing-results").textContent = `Showing results for: "${e.target["search-bar"].value}"`
+            resultsDiv.innerHTML = ""
             drinkDiv.innerHTML = ""
             search(e.target['search-option'], e.target['search-bar'].value)
         })
