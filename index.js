@@ -28,6 +28,7 @@ fetch('http://localhost:3000/favorites')
         sortField.addEventListener('change', sortCards)
 
         function search(searchOption, searchValue){
+            drinkDiv.setAttribute("style", "border: none")
             const searchValueWithPlus = searchValue.replace(/ /g, "+")
             const searchUrl = urlIdentifier(searchOption) + searchValueWithPlus 
             fetch(searchUrl)
@@ -144,6 +145,7 @@ fetch('http://localhost:3000/favorites')
             }
 
             function populateDetails(event){
+                drinkDiv.setAttribute("style", "border: double")
                 drinkDiv.innerHTML = `
                     <h2 id="selected-name">${drinkName.textContent}</h1>
                     <img id="selected-image" src="${drinkImg.src}">
@@ -236,6 +238,7 @@ fetch('http://localhost:3000/favorites')
             const favoritesButton = document.querySelector('button')
             favoritesButton.textContent = 'Favorites'
             favoritesButton.addEventListener('click',e=>{
+                drinkDiv.setAttribute("style", "border: none")
                 sortField.selectedIndex = 0
                 sortField.disabled = false
                 try{
