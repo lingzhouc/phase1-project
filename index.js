@@ -21,7 +21,7 @@ fetch('http://localhost:3000/favorites')
             e.preventDefault()
             sortField.disabled = false
             sortField.selectedIndex = 0
-            resultsDiv.innerHTML = ''
+            resultsDiv.innerHTML = `<h3>Showing results for: "${e.target["search-bar"].value}"</h3></br>`
             drinkDiv.innerHTML = ""
             search(e.target['search-option'], e.target['search-bar'].value)
         })
@@ -243,7 +243,7 @@ fetch('http://localhost:3000/favorites')
                 sortedDrinkCards = drinkCards.sort((a,b)=>{
                     return a.querySelector('p').textContent.localeCompare(b.querySelector('p').textContent)
                 }).reverse()
-            } else if (sortEvent.target.value == "byIngredients") {
+            } else if (sortEvent.target.value == "byIngredient") {
                 sortedDrinkCards = drinkCards.sort((a,b)=>{
                     return a.classList[1][0].localeCompare(b.classList[1][0])
                 })
