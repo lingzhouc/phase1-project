@@ -14,6 +14,22 @@ fetch('http://localhost:3000/favorites')
             favoritesIds.push(drink.id)
         })
 
+    const favoritesButton = document.createElement('button')
+    favoritesButton.textContent = 'Favorites'
+    favoritesButton.addEventListener('click',e=>{
+        if (favoritesArray.length !== 0){
+            resultsDiv.innerHTML = ''
+            drinkDiv.innerHTML = ""
+            favoritesArray.forEach(drink=>{
+                drink.idDrink = drink.id
+                createDrinkCard(drink)
+            }) 
+        }else{
+            resultsDiv.textContent = 'No favorites set. Try searching!'
+        }
+    })
+    searchForm.parentNode.append(favoritesButton)
+
     sortField.disabled = true
     sortField.selectedIndex = 0
 
@@ -168,12 +184,14 @@ fetch('http://localhost:3000/favorites')
                 headers : {
                     "Content-Type": "application/json",
                 },
-                body : JSON.stringify({id : parseInt(drinkId), img : drinkImg.src, name : drinkName.textContent})
+                body : JSON.stringify({id : parseInt(drinkId), strDrinkThumb : drinkImg.src, strDrink : drinkName.textContent})
             }).then(r => r.json())
             .then(response => {
                 addFavoritesButton.textContent = 'Remove from Favorites'
                 addFavoritesButton.removeEventListener('click', postFavorite)
                 addFavoritesButton.addEventListener('click', deleteFavorite)
+                favoritesArray.push(response)
+                favoritesIds.push(response.id)
             })
         }
         
@@ -188,6 +206,10 @@ fetch('http://localhost:3000/favorites')
                 addFavoritesButton.textContent = 'Add to Favorites'
                 addFavoritesButton.removeEventListener('click', deleteFavorite)
                 addFavoritesButton.addEventListener('click', postFavorite)
+                const newFavorites = favoritesArray.filter(fave => fave.id !== drinkId)
+                favoritesArray = newFavorites
+                const newFavoritesIds = favoritesIds.filter(id => id !== drinkId)
+                favoritesIds = newFavoritesIds
             })
         }
     }
