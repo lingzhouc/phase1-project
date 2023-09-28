@@ -124,7 +124,7 @@ input[type="submit"]{
 
 /* selected drink */
 #selected-drink {
-    max-width: 780px;
+    max-width: 45%;
     min-width: 45%;
     margin-right: 40px;
 }
@@ -186,4 +186,10 @@ input[type="submit"]{
     margin: 70px auto 55px auto;
     padding: 15px 23px;
     font-size: 105%;
+}
+
+@media only screen and (max-width: 1300px) {
+    #selected-image {   
+        height: 200px;
+    }
 }
