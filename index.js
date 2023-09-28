@@ -27,6 +27,7 @@ fetch('http://localhost:3000/favorites')
             resultsDiv.innerHTML = ""
             drinkDiv.innerHTML = ""
             search(e.target['search-option'], e.target['search-bar'].value)
+            e.target.reset()
         })
         sortField.addEventListener('change', sortCards)
 
@@ -266,8 +267,11 @@ fetch('http://localhost:3000/favorites')
             const favoritesButton = document.querySelector('#favorites')
             favoritesButton.textContent = 'Favorites'
             favoritesButton.addEventListener('click',e=>{
+
                 showing.textContent = "Favorites:"
                 drinkDiv.setAttribute("style", "border: none")
+                drinkDiv.innerHTML = ""
+
                 sortField.selectedIndex = 0
                 sortField.disabled = false
                 try{
