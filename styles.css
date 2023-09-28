@@ -50,16 +50,23 @@ input[type="submit"]{
     padding: 3px 2em;
 }
 
+/* sort bar */
+#sort {
+    display: flex;
+    flex-direction: row;
+}
+
 #sort-by {
     width: 200px;
     margin: 10px 0 10px 20px;
 }
 
-/* drink results */
 #showing-results {
-    padding-left: 7%;
+    padding: 10px 7%;
 }
 
+
+/* drink results */
 #drink-box {
     display: flex;
     flex-direction: row;
