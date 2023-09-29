@@ -7,6 +7,6 @@ And if you need something simple, you can sort your results by lowest number of 
 
 ## Instructions
 1. Clone this repository
-2. run json-server  --watch db.json in your terminal (might need to install json-server)
+2. Run json-server  --watch db.json in your terminal (might need to install json-server)
 3. Open index.html
 4. Start searching!
